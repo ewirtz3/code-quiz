@@ -8,16 +8,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
-    <div class="container-fluid">
-        <header class="row">
-            <div class="col-sm justify-content-start">
-                <a href="high-scores.html">View Highscores</a>
-            </div>
-            <div class="col-sm justify-content-end">
-                <h6>Time:</h6>
-            </div>
-        </header>
+<body class="d-flex flex-column h-100">
+    <header>
+        <div class="nav-scroller">
+            <nav class="nav d-flex justify-content-between">
+                <div class="col-6 text-left">
+                    <a href="high-scores.html">View Highscores</a>
+                </div>
+                <div class="col-6 text-right">
+                    <text>Time: 
+                        <text id="startTime">90</text>
+                    </text>
+                </div>
+            </nav>
 
     </div>
 </body>
