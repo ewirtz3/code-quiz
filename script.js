@@ -8,4 +8,4 @@
 //3: a(n) _______ element's position is relative to its closest positioned parent element. a/relative b/absolute c/fixed d/scrolled
 //4: which of the following is an example of a string? a/'Spring is here!' b/Spring c/3 d/true
 //5: which of the following methods returns a random number between 9 and 1? a/Math.floor b/Math.random c/Math.ceil d/Math.length
-//6: 
+
