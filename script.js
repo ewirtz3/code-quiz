@@ -27,7 +27,7 @@ var initialsInput = document.querySelector("#initials");
 var finalScore = document.querySelector("#score");
 
 var user = {
-    initials: initialsInput.nodeValue.trim(),
+    initials: initialsInput.value.trim(),
     score: finalScore.value
 };
 console.log(user);
