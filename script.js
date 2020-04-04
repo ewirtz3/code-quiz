@@ -4,55 +4,70 @@ var startButton = document.querySelector("#start-button")
 var endPage = document.querySelector("#game-end");
 
 var questions = [
-    { question: 'Which of these is a CSS selector?'
-        1: 'Element'
-        2: 'Class'
-        3: 'ID'
-        4: 'All of the above'},
-    { question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?'
-        1: 'Family ties'
-        2: 'Feudal system'
-        3: 'Hierarchy'
-        4: 'Adoption'
-    },
-    { question: 'The position of a(n) _______ element is relative to its closest positioned parent element.'
-        1: 'Relative'
-        2: 'Absolute'
-        3: 'Fixed'
-        4: 'Scrolled'
-    },
-    { question: 'Which of the following is an example of a string?'
-        1: 'Spring is here!'
-        2: 3
-        3: true
-        4: false
-    },
+    { question: 'Which of these is a CSS selector?'},
+    { question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?'},
+    { question: 'The position of a(n) _______ element is relative to its closest positioned parent element.'},
+    { question: 'Which of the following is an example of a string?'},
     { question: 'Which of the following methods returns a random number between 9 and 1?'
-        1: Math.floor
-        2: Math.random
-        3: Math.ceil
-        4: Math.length
     }];
+var answers = [
+    {   1: 'a) Element'
+        2: 'b) Class'
+        3: 'c) ID'
+        4: 'd) All of the above'},
+    {   1: 'a) Family ties'
+        2: 'b) Feudal system'
+        3: 'c) Hierarchy'
+        4: 'd) Adoption'},
+    {   1: 'a) Relative'
+        2: 'b) Absolute'
+        3: 'c) Fixed'
+        4: 'd) Scrolled'},
+    {   1: 'a) Spring is here!'
+        2: 'b) 3'
+        3: 'c) true'
+        4: 'd) false'},
+    {   1: 'a) Math.floor'
+        2: 'b) Math.random'
+        3: 'c) Math.ceil'
+        4: 'd) Math.length'}];
 
 var correctAnswers = [4, 3, 2, 1, 2];
+var questionNum = 0;
 
 //user clicks start -- addEventListener -- timer starts, first question appears
 startButton.addEventListener("click", function(event){
     event.preventDefault();
-    nextPage();
+    createCard();
 });
 
-function nextPage(){
-    window.innerHTML = "";
+//define var questionDiv and attach to div in html
+var questionDiv = document.querySelector("#questionDiv");
+
+//function to attach question and answer info to questionDiv
+function createCard(){
+    var question = questions[i];
+    question = document.createElement("div");
+    question.setAttribute("class", "card-header text-align-center");
+
+    var div2 = document.createElement("div");
+    div2.setAttribute ("class", "card-body text-primary");
+
+    var answer = answers[i];
+    answer = document.createElement("button");
+    answer.setAttribute("class", "btn btn-primary");
+    answer.setAttribute("type", button);
+
+    questionDiv.appendChild(question);
+    div2.appendChild(answer);
+};
+
+window.innerHTML = "";
     for (var i = 0; i < questions.length; i++){
         window.innerHTML = questions[i];
     }
-};
-
 //questions -- addEventListener to all answer buttons, correct/incorrect both move to next question, correct displays Correct! in green at the bottom, incorrect displays Incorrect! in red at the bottom AND deducts 10 seconds from the timer
 //timer: counts down one second at a time UNLESS incorrect button is pressed
-var incorrectAnswer = document.querySelector(".incorrect");
-var correctAnswer = document.querySelector(".correct");
 var timer = document.querySelector("#start-time");
 var totalSeconds = 0;
 var secondsElapsed = 0;
@@ -79,6 +94,8 @@ function startTimer () {
             renderTime();
         }, 1000);
 }
+
+
 function incorrectAns () {
 
 }
