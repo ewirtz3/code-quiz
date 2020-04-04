@@ -63,7 +63,8 @@ function startTimer() {
             secondsElapsed++;
             renderTime();
         }, 1000);
-};
+    }
+    else endPage();
 }
 
 //user clicks start -- addEventListener -- timer starts, first question appears
@@ -74,73 +75,74 @@ startButton.addEventListener("click", function(event){
     windowDiv.innerHTML ="";
     createCard();
     startTimer();
+    });
 });
-})
 
 
 var dot = document.querySelector(".dot");
 var mode = "go";
 
 var questions = [
-    { question: 'Which of these is a CSS selector?'},
-    { question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?'},
-    { question: 'The position of a(n) _______ element is relative to its closest positioned parent element.'},
-    { question: 'Which of the following is an example of a string?'},
-    { question: 'Which of the following methods returns a random number between 9 and 1?'},
-    ];
-
-var answers = [
-    {   1: 'a) Element',
-        2: 'b) Class',
-        3: 'c) ID',
-        4: 'd) All of the above'},
-    {   1: 'a) Family ties',
-        2: 'b) Feudal system',
-        3: 'c) Hierarchy',
-        4: 'd) Adoption'},
-    {   1: 'a) Relative',
-        2: 'b) Absolute',
-        3: 'c) Fixed',
-        4: 'd) Scrolled'},
-    {   1: 'a) Spring is here!',
-        2: 'b) 3',
-        3: 'c) true',
-        4: 'd) false'},
-    {   1: 'a) Math.floor',
-        2: 'b) Math.random',
-        3: 'c) Math.ceil',
-        4: 'd) Math.length'}
+    { 
+        question: 'Which of these is a CSS selector?',
+        answer: { 1:'a) Element', 2: 'b) Class', 3: 'c) ID', 4: 'd) All of the above'},
+        correct: 4
+    },
+    { 
+        question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?',
+        answer: { 1: 'a) Family ties', 2: 'b) Feudal system', 3: 'c) Hierarchy', 4: 'd) Adoption'},
+        correct: 3
+    },
+    { 
+        question: 'The position of a(n) _______ element is relative to its closest positioned parent element.',
+        answer: { 1: 'a) Relative', 2: 'b) Absolute', 3: 'c) Fixed', 4: 'd) Scrolled'},
+        correct: 2
+    },
+    { 
+        question: 'Which of the following is an example of a string?',
+        answer: { 1: 'a) Spring is here!', 2: 'b) 3', 3: 'c) true', 4: 'd) false'},
+        correct: 1
+    },
+    { 
+        question: 'Which of the following methods returns a random number between 9 and 1?',
+        answer: { 1: 'a) Math.floor', 2: 'b) Math.random', 3: 'c) Math.ceil', 4: 'd) Math.length'},
+        correct: 2
+    },
     ];
 
 // function to attach question and answer info to windowDiv
 createCard = function(){
+    // var questionNum = 0;
+
     for (var i = 0; i < questions.length; i++){
     var div = document.createElement("div");
     div.setAttribute("class", "col-6 card border-primary mb-3");
 
-    var question = questions[i];
-    for (i = 0; i < questions.length; i++){
+    var question = questions[i].question;
     question = document.createElement("div");
     question.setAttribute("class", "card-header text-align-center");
-    question.textContent = questions[i];}
+    question.textContent = questions[i].question;
 
     var div2 = document.createElement("div");
     div2.setAttribute("class", "card-body text-primary");
 
-    var answer = answers[i];
-    answer = document.createElement("button");
-    answer.setAttribute("class", "btn btn-primary");
-    answer.setAttribute("type", "button");
-    answer.textContent = answers[i];
+    var answerDiv = document.createElement("button");
+    answerDiv.setAttribute("class", "btn btn-primary");
+    answerDiv.setAttribute("type", "button");
+    
+    var answers = document.createElement("p");
+    // questions[i].answer[i];
+    for (i = 0; i < questions[i].answer.length; i++){
+    answers.innerHTML = questions[i].answer[i]};
 
     windowDiv.appendChild(div);
     div.appendChild(question);
     div.appendChild(div2);
-    div2.appendChild(answer);
+    div2.appendChild(answerDiv);
+    answerDiv.appendChild(answers);
 }};
 
-var correctAnswers = [4, 3, 2, 1, 2];
-var questionNum = 0;
+
 // windowDiv.innerHTML = pages[i];
     
 // questions -- addEventListener to all answer buttons, correct/incorrect both move to next question, correct displays Correct! in green at the bottom, incorrect displays Incorrect! in red at the bottom AND deducts 10 seconds from the timer
