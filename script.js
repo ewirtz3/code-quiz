@@ -1,14 +1,40 @@
 var startTime = document.querySelector("#start-time");
 var window = document.querySelector("#window");
 var startButton = document.querySelector("#start-button")
-var questionOne = document.querySelector("#question1");
-var questionTwo = document.querySelector("#question2");
-var questionThree = document.querySelector("#question3");
-var questionFour = document.querySelector("#question4");
-var questionFive = document.querySelector("#question5");
 var endPage = document.querySelector("#game-end");
 
-var questions = [questionOne, questionTwo, questionThree, questionFour, questionFive];
+var questions = [
+    { question: 'Which of these is a CSS selector?'
+        1: 'Element'
+        2: 'Class'
+        3: 'ID'
+        4: 'All of the above'},
+    { question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?'
+        1: 'Family ties'
+        2: 'Feudal system'
+        3: 'Hierarchy'
+        4: 'Adoption'
+    },
+    { question: 'The position of a(n) _______ element is relative to its closest positioned parent element.'
+        1: 'Relative'
+        2: 'Absolute'
+        3: 'Fixed'
+        4: 'Scrolled'
+    },
+    { question: 'Which of the following is an example of a string?'
+        1: 'Spring is here!'
+        2: 3
+        3: true
+        4: false
+    },
+    { question: 'Which of the following methods returns a random number between 9 and 1?'
+        1: Math.floor
+        2: Math.random
+        3: Math.ceil
+        4: Math.length
+    }];
+
+var correctAnswers = [4, 3, 2, 1, 2];
 
 //user clicks start -- addEventListener -- timer starts, first question appears
 startButton.addEventListener("click", function(event){
