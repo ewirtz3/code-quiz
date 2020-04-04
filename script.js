@@ -41,11 +41,13 @@ function startPage(){
     div3.appendChild(button);
 };
 
+//defining the setTime function, again interval is undefined but we are clearing it
 function setTime(){
     clearInterval(interval);
     totalSeconds = 90;
 };
 
+//renderTime function: timer.textContent - i had something else it was equal to but I forgot what it was
 function renderTime(){
     timer.textContent = totalSeconds - secondsElapsed;
     if (secondsElapsed >= 90) {
