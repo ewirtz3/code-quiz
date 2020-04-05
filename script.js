@@ -198,10 +198,26 @@ function renderScores() {
         scoreList.appendChild(li);
     }
 }
+
+var backBtn = document.getElementById("back");
+var clearBtn = document.getElementById("clear");
+backBtn.addEventListener("click", function(event){
+    highScoresPage.classList.add("d-none");
+    startPage();
+});
+clearBtn.addEventListener("click", function(event){
+    localStorage.removeItem("user");
+    scores =[];
+})
+
 viewScores.addEventListener("click", function(event){
     highScoresPage.classList.remove("d-none");
     var storedScores = JSON.parse(localStorage.getItem("user"));
     if (storedScores !== null) {
         scores = storedScores;
     }
-})
+    renderScores();
+});
+
+
+
