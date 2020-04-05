@@ -113,33 +113,30 @@ var questions = [
 // function to attach question and answer info to windowDiv
 createCard = function(){
     // var questionNum = 0;
+    var questionDiv = document.querySelector("#questionDiv");
+    questionDiv.classList.remove("d-none");
+
 
     for (var i = 0; i < questions.length; i++){
-    var div = document.createElement("div");
-    div.setAttribute("class", "col-6 card border-primary mb-3");
-
     var question = questions[i].question;
-    question = document.createElement("div");
-    question.setAttribute("class", "card-header text-align-center");
-    question.textContent = questions[i].question;
+    questionHeader = document.querySelector("#questionHeader");
+    questionHeader.innerText = question;
 
-    var div2 = document.createElement("div");
-    div2.setAttribute("class", "card-body text-primary");
-
-    var answerDiv = document.createElement("button");
-    answerDiv.setAttribute("class", "btn btn-primary");
-    answerDiv.setAttribute("type", "button");
+    var answer1 = questions[i].answer[1];
+    var answerBtn1 = document.querySelector("#answer1");
+    answerBtn1.innerText = answer1;
     
-    var answers = document.createElement("p");
-    // questions[i].answer[i];
-    for (i = 0; i < questions[i].answer.length; i++){
-    answers.innerHTML = questions[i].answer[i]};
+    var answer2 = questions[i].answer[2];
+    var answerBtn2 = document.querySelector("#answer2");
+    answerBtn2.innerText = answer2;
 
-    windowDiv.appendChild(div);
-    div.appendChild(question);
-    div.appendChild(div2);
-    div2.appendChild(answerDiv);
-    answerDiv.appendChild(answers);
+    var answer3 = questions[i].answer[3];
+    var answerBtn3 = document.querySelector("#answer3");
+    answerBtn3.innerText = answer3;
+
+    var answer4 = questions[i].answer[4];
+    var answerBtn4 = document.querySelector("#answer4");
+    answerBtn4.innerText = answer4;
 }};
 
 

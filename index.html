@@ -26,11 +26,22 @@
     </header>
     <section id="window" class="row justify-content-center">
     </section>
-        <div class="col-6 card border-primary mb-3" id="questionDiv">
-            <hr>
-            <p id="outcome"></p>
+    <section class="row justify-content-center">
+        <div class="col-6 card border-info mb-3 d-none" id="questionDiv">
+            <div class="card-header" id="questionHeader"></div>
+            <div class="card-body">
+                <button type="button" class="btn btn-info mb-3" id="answer1"></button>
+                <button type="button" class="btn btn-info mb-3" id="answer2"></button>
+                <button type="button" class="btn btn-info mb-3" id="answer3"></button>
+                <button type="button" class="btn btn-info mb-3" id="answer4"></button>
+            </div>
+                <hr class="d-none">
+                <p class="d-none" id="outcome"></p>
+            </div>
         </div>
-        <div class="col-6 card border-info mb-3" id="game-end">
+    </section>
+    <section class="row justify-content-center">
+        <div class="col-6 card border-info mb-3 d-none" id="game-end">
             <div class="card-body text-info">
                 <h3>All done!</h3>
                 <br>
@@ -41,7 +52,9 @@
                 <button type="button" class="btn btn-info submit">Submit</button>
             </div>
         </div>
-        <div class="col-6 card border-info mb-3" id="highscores">
+    </section>
+    <section class="row justify-content-center">
+        <div class="col-6 card border-info mb-3 d-none" id="highscores">
             <div class="card-header text-align-center">Highscores</div>
             <div class="card-body text-info">
                 <ul class="row list-group">
@@ -53,6 +66,7 @@
                 <button type="button" class="btn btn-info clear d-inline ml-3 mb-3">Clear Highscores</button>
             </div>
         </div>
+    </section>
     <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
