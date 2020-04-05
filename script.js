@@ -1,6 +1,7 @@
 //global variables for window, timer, and time-related items
 var windowDiv = document.querySelector("#window");
 var endPage = document.querySelector("#game-end");
+var questionDiv = document.querySelector("#questionDiv");
 var timer = document.querySelector("#start-time");
 var secondsElapsed = 0;
 var MAX_TIME = 90;
@@ -63,7 +64,6 @@ window.addEventListener("load", function(event){
 startButton.addEventListener("click", function(event){
     event.preventDefault();
     windowDiv.innerHTML ="";
-    var questionDiv = document.querySelector("#questionDiv");
     questionDiv.classList.remove("d-none");
     changeQuestion();
     startTimer();
@@ -115,11 +115,8 @@ var answer4 = questions[currentIndex].answer[4];
 
 //function to go through questions array
 function changeQuestion() {
-    if (currentIndex === questions.length) {
-        clearInterval(interval);
-        questionDiv.classList.add("d-none");
-        endPage.classList.remove("d-none");
-        return score.innerHTML = startTime.innerHTML;
+    if (currentIndex === questions.length || totalSeconds <=0) {
+        gameEnd();
     }
     questionHeader.innerHTML = question;
     answerBtn1.innerHTML = answer1;
@@ -162,10 +159,13 @@ choices.addEventListener("click", function(event){
     }
 });
 
-function endPage() {
-    
-}
-// if timer runs out, questions stop and game end page shows
+//function to end game and render page for user to input their initials
+function gameEnd() {
+    clearInterval(interval);
+    questionDiv.classList.add("d-none");
+    endPage.classList.remove("d-none");
+    return finalScore.innerHTML = timer.innerHTML;
+};
 
 // game end page: final score is displayed and user enters their initials and clicks Submit. initials and score should go to local storage
 var submitScoreButton = document.querySelector(".submit");
@@ -174,7 +174,7 @@ var finalScore = document.querySelector("#score");
 
 var user = {
     initials: initialsInput.value.trim(),
-    score: finalScore.value
+    score: finalScore.innerHTML
 };
 console.log(user);
 
@@ -184,10 +184,24 @@ submitScoreButton.addEventListener("click", function(event) {
     event.preventDefault();
     localStorage.setItem("user", JSON.stringify(user));
     windowDiv.innerHTML = "";
+    endPage.classList.add("d-none");
     highScoresPage.classList.remove("d-none");
 })
 
 var viewScores = document.querySelector("#view");
+var scores = [];
+function renderScores() {
+    for (var i = 0; i < scores.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = user;
+        scoreList = document.getElementById("score-list")
+        scoreList.appendChild(li);
+    }
+}
 viewScores.addEventListener("click", function(event){
     highScoresPage.classList.remove("d-none");
+    var storedScores = JSON.parse(localStorage.getItem("user"));
+    if (storedScores !== null) {
+        scores = storedScores;
+    }
 })
