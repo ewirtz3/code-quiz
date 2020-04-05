@@ -86,29 +86,34 @@ var questions = [
     { 
         question: 'Which of these is a CSS selector?',
         answer: { 1:'a) Element', 2: 'b) Class', 3: 'c) ID', 4: 'd) All of the above'},
-        correct: 4
+        correct: answer4
     },
     { 
         question: 'In HTML, the relationship between elements and their ancestor and descendant elements is known as what?',
         answer: { 1: 'a) Family ties', 2: 'b) Feudal system', 3: 'c) Hierarchy', 4: 'd) Adoption'},
-        correct: 3
+        correct: answer3
     },
     { 
         question: 'The position of a(n) _______ element is relative to its closest positioned parent element.',
         answer: { 1: 'a) Relative', 2: 'b) Absolute', 3: 'c) Fixed', 4: 'd) Scrolled'},
-        correct: 2
+        correct: answer2
     },
     { 
         question: 'Which of the following is an example of a string?',
         answer: { 1: 'a) Spring is here!', 2: 'b) 3', 3: 'c) true', 4: 'd) false'},
-        correct: 1
+        correct: answer1
     },
     { 
         question: 'Which of the following methods returns a random number between 9 and 1?',
         answer: { 1: 'a) Math.floor', 2: 'b) Math.random', 3: 'c) Math.ceil', 4: 'd) Math.length'},
-        correct: 2
+        correct: answer2
     },
     ];
+
+var answerBtn1 = document.querySelector("#answer1");
+var answerBtn2 = document.querySelector("#answer2");
+var answerBtn3 = document.querySelector("#answer3");
+var answerBtn4 = document.querySelector("#answer4");
 
 // function to attach question and answer info to windowDiv
 createCard = function(){
@@ -116,34 +121,87 @@ createCard = function(){
     var questionDiv = document.querySelector("#questionDiv");
     questionDiv.classList.remove("d-none");
 
-
     for (var i = 0; i < questions.length; i++){
     var question = questions[i].question;
     questionHeader = document.querySelector("#questionHeader");
     questionHeader.innerText = question;
 
     var answer1 = questions[i].answer[1];
-    var answerBtn1 = document.querySelector("#answer1");
     answerBtn1.innerText = answer1;
     
     var answer2 = questions[i].answer[2];
-    var answerBtn2 = document.querySelector("#answer2");
     answerBtn2.innerText = answer2;
 
     var answer3 = questions[i].answer[3];
-    var answerBtn3 = document.querySelector("#answer3");
     answerBtn3.innerText = answer3;
 
     var answer4 = questions[i].answer[4];
-    var answerBtn4 = document.querySelector("#answer4");
     answerBtn4.innerText = answer4;
-}};
-
-
-// windowDiv.innerHTML = pages[i];
+}
+};
     
 // questions -- addEventListener to all answer buttons, correct/incorrect both move to next question, correct displays Correct! in green at the bottom, incorrect displays Incorrect! in red at the bottom AND deducts 10 seconds from the timer
-
+function incorrectGuess() {
+    clearInterval(interval);
+    secondsElapsed+10000;
+    renderTime();
+};
+answerBtn1.addEventListener("click", function(event){
+    for (var i = 0; i < questions.length; i++){
+        if (totalSeconds > 0){
+            if (event.target.id == questions[i].correct){
+                createCard();}
+            else {
+                incorrectGuess()}
+            }
+        else {
+            questionDiv.classList.add("d-none");
+            endPage.classList.remove("d-none");
+        }
+    }
+});
+answerBtn2.addEventListener("click", function(event){
+    for (var i = 0; i < questions.length; i++){
+        if (totalSeconds > 0){
+            if (event.target.id == questions[i].correct){
+                createCard();}
+            else {
+                incorrectGuess()}
+            }
+        else {
+            questionDiv.classList.add("d-none");
+            endPage.classList.remove("d-none");
+        }
+    }
+});
+answerBtn3.addEventListener("click", function(event){
+    for (var i = 0; i < questions.length; i++){
+        if (totalSeconds > 0){
+            if (event.target.id == questions[i].correct){
+                createCard();}
+            else {
+                incorrectGuess()}
+            }
+        else {
+            questionDiv.classList.add("d-none");
+            endPage.classList.remove("d-none");
+        }
+    }
+});
+answerBtn4.addEventListener("click", function(event){
+    for (var i = 0; i < questions.length; i++){
+        if (totalSeconds > 0){
+            if (event.target.id == questions[i].correct){
+                createCard();}
+            else {
+                incorrectGuess()}
+            }
+        else {
+            questionDiv.classList.add("d-none");
+            endPage.classList.remove("d-none");
+        }
+    }
+});
 
 // if timer runs out, questions stop and game end page shows
 
@@ -158,9 +216,16 @@ var user = {
 };
 console.log(user);
 
+var highScoresPage = document.querySelector("#highscores");
 // set new submission to storage upon click of Submit
 submitScoreButton.addEventListener("click", function(event) {
     event.preventDefault();
     localStorage.setItem("user", JSON.stringify(user));
     windowDiv.innerHTML = "";
+    highScoresPage.classList.remove("d-none");
+})
+
+var viewScores = document.querySelector("#view");
+viewScores.addEventListener("click", function(event){
+    highScoresPage.classList.remove("d-none");
 })
