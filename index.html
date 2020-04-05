@@ -16,7 +16,6 @@
                     <button type="button" class="btn btn-link view-highscores" id="view">View Highscores</button>
                 </div>
                 <div class="col-6 text-right" id="timer">
-                    <span class="dot"></span>
                     <text>Time: 
                         <text id="start-time">90</text>
                     </text>
@@ -29,13 +28,12 @@
     <section class="row justify-content-center">
         <div class="col-6 card border-info mb-3 d-none" id="questionDiv">
             <div class="card-header" id="questionHeader"></div>
-            <div class="card-body">
+            <div class="card-body" id="choices">
                 <button type="button" class="btn btn-info mb-3" id="answer1"></button>
                 <button type="button" class="btn btn-info mb-3" id="answer2"></button>
                 <button type="button" class="btn btn-info mb-3" id="answer3"></button>
                 <button type="button" class="btn btn-info mb-3" id="answer4"></button>
             </div>
-                <hr class="d-none">
                 <p class="d-none" id="outcome"></p>
             </div>
         </div>
