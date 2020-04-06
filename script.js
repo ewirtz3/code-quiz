@@ -125,21 +125,6 @@ function changeQuestion() {
     answerBtn4.innerHTML = answer4;
 };
 
-// function to check userGuess against correct answer, correct/incorrect both move to next question, correct displays 'Hell yeah! at the bottom, incorrect displays 'Hell no!' AND deducts 10 seconds from totalSeconds
-function runQuiz(userGuess) {
-    var correctAnswer = questions[currentIndex].correct;
-    var outcome = document.getElementById("outcome");
-    if (userGuess === correctAnswer) {
-        outcome.innerHTML = 'Hell yeah!';
-    }
-    else {
-        outcome.innerHTML = 'Hell no!'
-        totalSeconds = totalSeconds - 10;
-    }
-    currentIndex++;
-    changeQuestion(currentIndex);
-};
-    
 // questions -- addEventListener to all answer buttons, click target saves as userGuess variable
 var choices = document.getElementById("choices");
 choices.addEventListener("click", function(event){
@@ -157,8 +142,24 @@ choices.addEventListener("click", function(event){
     else if (userGuess.matches("#answer4") === true) {
         userGuess === answer4;
     }
+    return userGuess;
 });
 
+// function to check userGuess against correct answer, correct/incorrect both move to next question, correct displays 'Hell yeah! at the bottom, incorrect displays 'Hell no!' AND deducts 10 seconds from totalSeconds
+function runQuiz(userGuess) {
+    var correctAnswer = questions[currentIndex].correct;
+    var outcome = document.getElementById("outcome");
+    if (userGuess === correctAnswer) {
+        outcome.innerHTML = 'Hell yeah!';
+    }
+    else {
+        outcome.innerHTML = 'Hell no!'
+        totalSeconds = totalSeconds - 10;
+    }
+    currentIndex++;
+    changeQuestion(currentIndex);
+};
+    
 //function to end game and render page for user to input their initials
 function gameEnd() {
     clearInterval(interval);
@@ -172,33 +173,42 @@ var submitScoreButton = document.querySelector(".submit");
 var initialsInput = document.querySelector("#initials");
 var finalScore = document.querySelector("#score");
 
+//user info saves to user object
 var user = {
     initials: initialsInput.value.trim(),
     score: finalScore.innerHTML
 };
 console.log(user);
 
-var highScoresPage = document.querySelector("#highscores");
-// set new submission to storage upon click of Submit
+var highScoresPage = document.getElementById("highscores");
+// upon click of Submit, set new user to storage, pull up high scores page
 submitScoreButton.addEventListener("click", function(event) {
     event.preventDefault();
     localStorage.setItem("user", JSON.stringify(user));
     windowDiv.innerHTML = "";
     endPage.classList.add("d-none");
     highScoresPage.classList.remove("d-none");
+    renderScores();
 })
 
+//global variables for View Scores link and Scores array
 var viewScores = document.querySelector("#view");
 var scores = [];
+//function to render the scores, pulling from local storage
 function renderScores() {
     for (var i = 0; i < scores.length; i++) {
         var li = document.createElement("li");
         li.textContent = user;
-        scoreList = document.getElementById("score-list")
-        scoreList.appendChild(li);
+        var storedScores = JSON.parse(localStorage.getItem("user"));
+        if (storedScores !== null) {
+            scores = storedScores;
+        }
+        scoreList = document.getElementById("score-list");
+        scoreList.appendChild(li);       
     }
 }
 
+//global variables referencing back and clear buttons, addEventListeners to each
 var backBtn = document.getElementById("back");
 var clearBtn = document.getElementById("clear");
 backBtn.addEventListener("click", function(event){
@@ -210,6 +220,7 @@ clearBtn.addEventListener("click", function(event){
     scores =[];
 })
 
+//addEventListener to View Scores link
 viewScores.addEventListener("click", function(event){
     highScoresPage.classList.remove("d-none");
     var storedScores = JSON.parse(localStorage.getItem("user"));
