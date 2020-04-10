@@ -125,11 +125,12 @@ function changeQuestion() {
     answerBtn4.innerHTML = answer4;
 };
 
+
 // questions -- addEventListener to all answer buttons, click target saves as userGuess variable
 var choices = document.getElementById("choices");
+
 choices.addEventListener("click", function(event){
     var userGuess = event.target;
-
     if (userGuess.matches("#answer1") === true) {
         userGuess === answer1;
     }
@@ -159,6 +160,11 @@ function runQuiz(userGuess) {
     currentIndex++;
     changeQuestion(currentIndex);
 };
+
+for (i = 0; i < questions.length; i++){
+    changeQuestion();
+    runQuiz();
+}
     
 //function to end game and render page for user to input their initials
 function gameEnd() {
